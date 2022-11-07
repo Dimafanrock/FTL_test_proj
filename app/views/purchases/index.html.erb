@@ -1,23 +1,53 @@
+<br>
+<div class="container  px-2 mt-4 font-sm "  style="max-width: 1000px;">
+  <h3>Navigation</h3>
+  <br>
+  <nav class="navbar navbar-expand-lg  rounded-3 bg-white h-auto" >
+    <div class="container-fluid ">    
+        <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+            <div class="navbar-nav"> 
+            <li><%= link_to 'Show all ', purchases_path , class: "btn btn-outline-secondary" %></li>   
 
-<h3>Navigation</h3>
-<nav>
-<ul>
-<li><%= link_to  'New purchase', new_purchase_path(@purchase) %></li>
-<li><%= link_to 'Show all ', purchases_path %></li>
-<li><%= link_to "Last mount", last_month_purchases_path, :method => :get %></li>
-<li><%= link_to "Last year", last_year_purchases_path, :method => :get %></li>
-<li><%= form_tag purchases_path, :method => 'get' do %>
-Filter by: <%= select_tag(:category_name, options_for_select(@category_list,  selected: params[:category_name]), onchange: 'this.form.submit();',  include_blank: true ,  )%>
-<% end %></li>
-<li><%= form_tag purchases_path, :method => 'get' do %>
-Statistic by date: <%= select_tag(:buy_at, options_for_select(@date_list,  selected: params[:buy_at]), onchange: 'this.form.submit();',  include_blank: true)%>
-<% end %></li>
+            <%= form_tag purchases_path, :method => 'get' do %>
+                <%= select_tag(:category_name, options_for_select(@category_list,  selected: params[:category_name]), onchange: 'this.form.submit();',   class: "btn btn-outline-secondary dropdown-toggle"  )%>
+            <% end %>
 
-<li><%= link_to "Remove all", remove_all_purchases_path, :method => :get %></li>
-</ul>
-</nav>
-<h3>List of your puchases</h3>
-<%= render @purchases %>
-<h3>Total cost:<%= @total_cost %> </h3>
+            <%= form_tag purchases_path, :method => 'get' do %>
+                <%= select_tag(:buy_at, options_for_select(@date_list,  selected: params[:buy_at]), onchange: 'this.form.submit();',   class: "btn btn-outline-secondary dropdown-toggle")%>
+            <% end %>
+
+
+            </div>
+        </div>
+    <a class="btn  btn-outline-secondary  pull-right "  href="<%= remove_all_purchases_path  {:method => :get} %>" role="button">Remove all</a>
+    <a class="btn  btn-outline-secondary  pull-right "  href="<%= new_purchase_path %>" role="button">New Puchase</a>
+    </div>
+  </nav>
+  <br>
+  
+  <div class="d-none d-sm-block ">
+  <table class="table table-hover show-border bg-white mt-3" >        
+        <thead >
+          <tr class="text-secondary">
+            <th scope="col" class='col-8 fw-normal py-3'>Category</th>
+            <th scope="col" class='fw-normal py-3' > Price</th>
+            <th scope="col" class='fw-normal py-3'> Date</th> 
+          </tr>
+        </thead>
+        <tbody>  
+          <%= render @purchases %>
+        </tbody>        
+  </table>  
+    <h5>Total spend  : <%= @total_cost  %>  UAH </h5>
+  </div>
+
+
+
+
+
+
+
+
+
 
 

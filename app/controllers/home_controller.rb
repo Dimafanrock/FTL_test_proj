@@ -1,10 +1,9 @@
 class HomeController < ApplicationController
-    skip_before_action :authenticate_user!, only: [:homepage]
+  skip_before_action :authenticate_user!, only: [:homepage]
+ 
+  def public_page
+    @purchases = current_user.purchases    
+  end
 
-    def homepage
-    end
 
-    def dashboard
-    end
-    
 end
