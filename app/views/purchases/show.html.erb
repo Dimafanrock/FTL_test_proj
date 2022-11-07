@@ -1,6 +1,50 @@
-<%= link_to 'All purchases ', purchases_path %> |
-<div>
-Category: <%= @purchase.category_name %>
-<%= @purchase.price %> UAH
-<%= @purchase.buy_at %> Date
+
+
+<br>
+
+<div class="bg-white">
+  <div class="container" style="max-width: 768px;">
+    <a class="nav-link text-primary py-3" href="<%= purchases_path %>">
+      <i class= "bi bi-chevron-left">
+      </i>
+         My Purchases
+    </a>
+  </div>
 </div>
+
+<br>
+
+<div class="container mb-5" style="max-width: 768px;">
+  <div class="card me-card  mx-auto">
+
+      <div class="card-header bg-white show-flex-space-between ">        
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end show-display-flex-align-center d-none d-sm-block">
+              <a class="btn text-secondary btn-sm" href="<%= edit_purchase_path(@purchase) %>" > 
+                <i class="bi bi-pencil-square">Edit</i>
+              </a>
+              <form data-turbo-confirm="Are you sure?" class="button_to" method="post" action="<%= purchase_path %>">
+                <input type="hidden"  name="_method" value="delete" autocomplete="off">
+                <button class="btn text-secondary btn-sm" type="submit">
+                  <i class="bi bi-trash3">Delete</i>
+                </button>  
+              </form>
+        </div>
+      </div>        
+        
+ 
+        
+    <div class="card-body mx-3 ">
+          <h3 class="card-title "> <%= @purchase.category_name %> </h3> 
+          <br>
+              <span class="mx-1 text-secondary font-sm">Date : </span>              
+              <span style="margin-right: 50px;" ><%= @purchase.buy_at.to_date.to_formatted_s(:long_ordinal) %></span>    
+          <div class="text-secondary mt-4 font-sm"> Description </div>
+          <div class="card-text mt-2" style="max-width: 540px"><%= @purchase.description  %></div>     
+          <div class="text-secondary mt-4 font-sm"> Price </div>
+          <div class="card-text mt-2" style="max-width: 540px"><%= @purchase.price  %></div>       
+    </div>
+    
+</div>
+
+

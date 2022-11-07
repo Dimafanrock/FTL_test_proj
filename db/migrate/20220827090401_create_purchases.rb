@@ -5,6 +5,7 @@ class CreatePurchases < ActiveRecord::Migration[7.0]
       t.date       :buy_at
       t.string     :category_name
       t.float      :price
+      t.text       :description
       t.timestamps
     end
   end

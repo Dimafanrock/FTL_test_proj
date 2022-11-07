@@ -1,8 +1,9 @@
-<p>
-Category:  <b><%= purchase.category_name %> </b>
-<%= purchase.price %> UAH
-<%= purchase.buy_at %> Date
-<%= link_to 'Edit ', edit_purchase_path(purchase) %> |
-<%= link_to "Delete ", purchase, data: { turbo_method: :delete} %>
-</p>
 
+<th class="text-secondary" >        
+<%= link_to purchase.category_name, purchase_path(purchase) , class: " fst-italic col-6 "%> 
+<th class="py-3">
+<%= purchase.price %> 
+<th class="py-3">                 
+<%= purchase.buy_at.to_date.to_formatted_s(:long_ordinal) %>      
+<th>
+</tr>        

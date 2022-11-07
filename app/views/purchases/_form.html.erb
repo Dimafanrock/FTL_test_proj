@@ -1,20 +1,47 @@
-<%= form_for @purchase do |f| %>
- 
-  <p>
-    <%= f.label :category_name %>
-    <%= f.text_field :category_name %>    
-  <p>
-    <%= f.label :price %>
-    <%= f.text_field :price %>
-  </p>
-  <p>
-    <%= f.label :buy_at %>
-    <%= f.date_field :buy_at %>    
-  </p>
+<div class='container  mb-5' style="max-width: 768px;"> 
 
-  <p>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.submit 'Save' %> 
-  </p>
+  <%= form_for @purchase do |f| %> 
+    <h4 class="mt-5"> New Purchase </h4>
+    <div class="me-card card-body card">    
 
-<% end %>
+      <div> 
+        <label class="form-label" for="category_name">      
+        <%= f.label :category_name %> 
+        </label> 
+        <%= f.select :category_name, options_for_select( Purchase::CATEGORIES,  :selected => params[:area] ),  {}, { class: "form-control" } %>
+      </div> 
+
+      <div> 
+        <label class="form-label" for="price">      
+        <%= f.label :price %> 
+        </label> 
+        <%=   f.text_field :price , class:"form-control"%>
+      </div> 
+
+      <div> 
+        <label class="form-label" for="description">      
+        <%= f.label :description %> 
+        </label> 
+        <%=   f.text_area :description , class:"form-control"%>
+      </div> 
+
+      <div>
+        <label class="form-label mt-3" for="buy_at">
+        <%= f.label :date_field, "Date", class: "mt-1" %>
+        </label>          
+        <%= f.date_field :buy_at , class:" form-select sm-form-mw "   %>               
+      </div>
+      
+      <div class="text-end p-3 bg-white ">
+        <div class="container" style="max-width: 768px;" > 
+          <a class="btn btn-sm btn-secondary my-cancel-btn-style px-4" href="<%= purchases_path %>" role="button" > Cancel </a> 
+          <input type="submit" name="comit" value="Save" class="m btn btn-sm btn-primary px-4" 
+          data-turbo="false" data-disable-with="Create">
+        </div>
+      </div> 
+    </div>
+  <% end %>
+</div>
+
+
+        
